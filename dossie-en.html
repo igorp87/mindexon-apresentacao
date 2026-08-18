@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mindexon — Technical Value Dossier</title>
+
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#f8fafc; --ink:#0f172a; --body:#475569; --dim:#94a3b8;
+    --line:#e2e8f0; --line2:#cbd5e1;
+    --blue:#2563eb; --indigo:#4f46e5; --teal:#0d9488; --emerald:#059669; --amber:#b45309; --red:#dc2626;
+    --grad:linear-gradient(90deg,#2563eb,#4f46e5);
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg2);color:var(--body);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+  .page{max-width:900px;margin:0 auto;background:var(--bg);
+    box-shadow:0 1px 3px rgba(15,23,42,.08),0 12px 40px rgba(15,23,42,.06)}
+  .pad{padding:clamp(24px,5vw,60px)}
+
+  h1{font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.08;letter-spacing:-.02em;font-weight:800;color:var(--ink);margin:0 0 12px}
+  h2{font-size:clamp(1.3rem,2.8vw,1.9rem);line-height:1.15;letter-spacing:-.01em;font-weight:800;color:var(--ink);margin:0 0 6px}
+  h3{font-size:1.05rem;font-weight:700;color:var(--ink);margin:0 0 4px}
+  p{margin:0 0 14px}
+  strong{color:var(--ink);font-weight:650}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .muted{color:var(--body)} .dim{color:var(--dim)}
+  a{color:var(--blue);text-decoration:none}
+
+  .wordmark{width:180px;height:auto;aspect-ratio:841.9/200.1;color:#2F67B2;display:block}
+
+  .hero{background:linear-gradient(160deg,#0f172a,#1e293b);color:#e2e8f0;position:relative;overflow:hidden}
+  .hero .wordmark{color:#fff}
+  .hero h1{color:#fff}
+  .hero .grad{background:linear-gradient(90deg,#60a5fa,#818cf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{color:#94a3b8;font-size:1.05rem;max-width:60ch}
+  .hero .grid-bg{position:absolute;inset:0;opacity:.5;
+    background-image:linear-gradient(rgba(96,165,250,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,.08) 1px,transparent 1px);
+    background-size:44px 44px;pointer-events:none}
+  .tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+  .tag{font-size:.72rem;font-weight:600;color:#cbd5e1;border:1px solid rgba(148,163,184,.3);
+    background:rgba(148,163,184,.12);padding:4px 11px;border-radius:999px}
+
+  .eyebrow{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--blue);margin-bottom:10px}
+  section{border-top:1px solid var(--line)}
+  .lead{font-size:1.08rem;color:var(--body)}
+
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0 4px}
+  @media(min-width:640px){.stats{grid-template-columns:repeat(3,1fr)}}
+  .stat{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+  .stat .n{font-size:1.7rem;font-weight:800;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+  .stat .n.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .l{font-size:.76rem;color:var(--dim);margin-top:7px}
+
+  .founds{display:grid;gap:12px;margin-top:6px}
+  @media(min-width:680px){.founds{grid-template-columns:1fr 1fr}}
+  .found{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--bg)}
+  .found h3{display:flex;align-items:center;gap:9px;font-size:.98rem}
+  .found .ic{width:30px;height:30px;border-radius:8px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:#fff}
+  .found .ic svg{width:16px;height:16px}
+  .found p{font-size:.86rem;margin:8px 0 0;color:var(--body)}
+
+  .mod{border:1px solid var(--line);border-left:4px solid var(--acc,#2563eb);border-radius:12px;padding:18px 20px;margin-bottom:14px;background:var(--bg)}
+  .mod .top{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+  .mod .code{font-size:.66rem;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--acc,#2563eb);
+    padding:4px 9px;border-radius:6px}
+  .mod h3{font-size:1.12rem}
+  .mod .does{font-size:.9rem;color:var(--body);margin:0 0 12px;font-style:italic}
+  .mod ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+  @media(min-width:620px){.mod ul{grid-template-columns:1fr 1fr}}
+  .mod li{display:flex;gap:8px;align-items:flex-start;font-size:.85rem;color:var(--body);line-height:1.4}
+  .mod li svg{width:15px;height:15px;flex:0 0 auto;margin-top:3px;color:var(--emerald)}
+  .rare{margin-top:12px;font-size:.82rem;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;
+    border-radius:8px;padding:9px 12px}
+  .rare b{color:#7c2d12}
+
+  .tbl{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:8px}
+  .tbl th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);
+    font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line2)}
+  .tbl td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--body);vertical-align:top}
+  .tbl td strong{color:var(--ink)}
+  .tbl tr:last-child td{border-bottom:none}
+  .scroll{overflow-x:auto}
+
+  .callout{border-left:4px solid var(--blue);background:var(--bg2);border-radius:0 10px 10px 0;
+    padding:14px 18px;margin:16px 0;color:var(--ink);font-size:.98rem}
+  .callout.big{border-color:var(--indigo)}
+
+  .costbox{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:10px}
+  .costbox .r{display:flex;justify-content:space-between;gap:12px;padding:11px 16px;border-bottom:1px solid var(--line);font-size:.9rem}
+  .costbox .r:last-child{border-bottom:none}
+  .costbox .r .v{font-weight:700;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .costbox .tot{background:var(--bg2)}
+  .costbox .tot b{color:var(--ink)}
+  .costbox .tot .v{font-size:1.05rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .foot{background:var(--bg2);font-size:.78rem;color:var(--dim);text-align:center}
+
+  .lang-switch{position:fixed;top:14px;right:16px;z-index:20;font-size:.72rem;font-weight:700;color:#fff;
+    border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 13px;text-decoration:none;
+    background:rgba(15,23,42,.6);backdrop-filter:blur(6px)}
+  .lang-switch:hover{background:rgba(15,23,42,.85)}
+
+  @media print{
+    body,.page{background:#fff;box-shadow:none;max-width:100%}
+    .hero{background:#0f172a !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{break-inside:avoid}
+    .mod{break-inside:avoid}
+    .lang-switch{display:none!important}
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="logo" viewBox="0 0 841.9 200.1">
+    <path fill="currentColor" d="M328,50c0,26.9,0,53.7,0,80.6c-7.4,0-14.9,0-22.3,0c-0.3-0.4-0.6-0.8-0.9-1.1c-11.9-13.3-23.8-26.7-35.7-40c-0.8-0.9-1.7-1.9-2.9-3.3c0,15.3,0,29.8,0,44.4c-8.3,0-16.5,0-24.8,0c0-26.9,0-53.7,0-80.6c7.3,0,14.7-0.1,22,0c0.8,0,1.9,0.6,2.5,1.3c12,13.2,23.9,26.4,35.8,39.6c0.4,0.5,0.6,1,1,1.6c0.2-0.2,0.5-0.3,0.7-0.5c0-13.9,0-27.8,0-42C311.7,50,319.8,50,328,50z"/>
+    <path fill="currentColor" d="M635.6,46.3c-25,0-41.8,18.4-41.8,43.7c0,23.9,15.3,42.3,40.5,42.3c26.3,0,42.5-18.4,42.5-43.5C676.8,64.4,661.5,46.3,635.6,46.3z M635.4,108.5c-8.9,0-14.5-8.1-14.5-19.1c0-11,5.6-19.3,14.4-19.3s14.4,8.3,14.4,19.3C649.7,100.4,644.4,108.5,635.4,108.5z"/>
+    <path fill="currentColor" d="M104.6,142.4c0,0-16.3-0.8-10.8-16.4c5.5-15.7,10-30.1,10-30.1l11.1,33.9h20.2l21.5-33.1l0.1,33.1h29.9l0-1.4V49.1h-33.3L131,83l-11.1-33.9H92.8l-32.1,83.4c0,0-16.3,37.6,23.7,38.4L779,135.4L104.6,142.4z"/>
+    <path fill="currentColor" d="M230.5,50v80.7h-30.7V50H230.5z"/>
+    <path fill="currentColor" d="M494.5,97.7h-38.7v13.8h43.2v18.2h-69.9V49h67.8v18.2h-41.1v12.3h38.7V97.7z"/>
+    <path fill="currentColor" d="M338.5,50.1c0.2,0,0.4-0.1,0.6-0.1c11.7,0,23.4-0.2,35.1,0.1c12,0.4,23.1,3.6,32.4,10.7c9.9,7.6,14.8,17.4,14.8,29.2c0,15.9-11.2,31.1-30.6,37.5c-6.4,2.1-12.9,3.1-19.7,3.1c-10.4,0-20.7,0-31.1,0c-0.5,0-0.9,0-1.5,0C338.5,103.8,338.5,77,338.5,50.1z M366.8,107c6.8,0.3,13.2-0.3,18.9-3.8c8-5,9.9-14.8,4-21.9c-2.9-3.5-6.9-5.4-11.4-6.6c-3.8-1-7.6-1.1-11.5-0.9C366.8,84.8,366.8,95.8,366.8,107z"/>
+    <path fill="currentColor" d="M507.5,129.4c1.5-2.2,2.8-4.1,4.2-6c7.8-11.3,15.6-22.5,23.5-33.8c0.5-0.8,0.5-1.2,0-2c-8.5-12.3-17.1-24.7-25.6-37.1c-0.3-0.4-0.5-0.7-0.8-1.3c0.5,0,0.9,0,1.2,0c9.2,0,18.3,0,27.5,0c0.8,0,1.3,0.2,1.7,0.9c3.8,5.8,7.7,11.7,11.5,17.5c0.2,0.3,0.4,0.5,0.6,0.7c3-4.6,6-9.2,9-13.7c1-1.6,2.1-3.2,3.2-4.8c0.2-0.3,0.7-0.6,1-0.6c9.6,0,19.1,0,29,0c-9.2,13.1-18.3,26-27.4,39c9.2,13.6,18.5,27.3,27.8,41c-0.5,0-0.8,0.1-1.1,0.1c-9.3,0-18.6,0-27.9,0c-0.8,0-1.2-0.3-1.6-0.9c-4.1-6.3-8.1-12.5-12.2-18.8c-0.1-0.2-0.3-0.4-0.5-0.8c-0.8,1.3-1.6,2.5-2.4,3.7c-3.3,5.2-6.7,10.4-10,15.6c-0.5,0.8-1.1,1.2-2,1.2c-9,0-18.1,0-27.1,0C508.6,129.4,508.2,129.4,507.5,129.4z"/>
+    <path fill="currentColor" d="M771.4,49c0,26.9,0,53.7,0,80.6c-7.4,0-14.9,0-22.3,0c-0.3-0.4-0.6-0.8-0.9-1.1c-11.9-13.3-23.8-26.7-35.7-40c-0.8-0.9-1.7-1.9-2.9-3.3c0,15.3,0,29.8,0,44.4c-8.3,0-16.5,0-24.8,0c0-26.9,0-53.7,0-80.6c7.3,0,14.7-0.1,22,0c0.8,0,1.9,0.6,2.5,1.3c12,13.2,23.9,26.4,35.8,39.6c0.4,0.5,0.6,1,1,1.6c0.2-0.2,0.5-0.3,0.7-0.5c0-13.9,0-27.8,0-42C755.1,49,763.3,49,771.4,49z"/>
+  </symbol>
+  <symbol id="c" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="calc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M8 14h2M8 18h2M14 10h2v8h-2z"/></symbol>
+  <symbol id="ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 8.7 8.7 21.3a1 1 0 0 1-1.4 0l-4.6-4.6a1 1 0 0 1 0-1.4L15.3 2.7a1 1 0 0 1 1.4 0l4.6 4.6a1 1 0 0 1 0 1.4z"/><path d="m7.5 10.5 2 2M11 7l2 2M14.5 3.5l2 2M4 14l2 2"/></symbol>
+  <symbol id="finger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></symbol>
+  <symbol id="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
+  <symbol id="shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01M6 18h.01"/></symbol>
+</defs></svg>
+
+<a class="lang-switch" href="dossie-pt.html" target="_blank" rel="noopener">PT</a>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero"><div class="grid-bg"></div><div class="pad" style="position:relative">
+    <svg class="wordmark" style="margin-bottom:22px"><use href="#logo"/></svg>
+    <div class="eyebrow" style="color:#93c5fd">Technical Value Dossier · Confidential · 2026</div>
+    <h1>The engineering behind<br><span class="grad">the system's power.</span></h1>
+    <p class="sub">A module-by-module evaluation of Mindexon's premium features — what exists, why it's rare, and what it would cost to rebuild. Based on a real source-code audit.</p>
+    <div class="tagrow">
+      <span class="tag">ISO 17025</span><span class="tag">21 CFR Part 11</span><span class="tag">ALCOA+</span>
+      <span class="tag">ISO 19011</span><span class="tag">ISO 22000 / Codex</span><span class="tag">GDPR</span>
+    </div>
+  </div></div>
+
+  <!-- SUMMARY -->
+  <section><div class="pad">
+    <div class="eyebrow">Executive summary</div>
+    <h2>It's not a QMS. It's an enterprise GxP stack <span class="grad">in one system.</span></h2>
+    <p class="lead" style="margin-top:10px">Mindexon brings together what regulated industry normally buys as <strong>four or five separate systems</strong> — LIMS, QMS, MES, WMS and training — into a single native product, with cryptographic integrity and enterprise-vendor depth in every module. The code-audit numbers:</p>
+    <div class="stats">
+      <div class="stat"><div class="n g">553</div><div class="l">API endpoints (129 in the lab alone)</div></div>
+      <div class="stat"><div class="n g">~72k</div><div class="l">lines of code</div></div>
+      <div class="stat"><div class="n g">130+</div><div class="l">database tables</div></div>
+      <div class="stat"><div class="n">384</div><div class="l">screens and components</div></div>
+      <div class="stat"><div class="n">12</div><div class="l">integrated modules</div></div>
+      <div class="stat"><div class="n">PT / EN</div><div class="l">187 translation files</div></div>
+    </div>
+  </div></section>
+
+  <!-- ENGINEERING UNDER THE HOOD -->
+  <section><div class="pad">
+    <div class="eyebrow">Engineering under the hood</div>
+    <h2>The foundations <span class="grad">few have.</span></h2>
+    <p class="muted" style="margin:8px 0 16px">Before the modules, what holds it all together — precisely the "invisible" part in a demo, but the most expensive to build and the hardest to copy.</p>
+    <div class="founds">
+      <div class="found"><h3><span class="ic" style="background:#059669"><svg><use href="#calc"/></svg></span>Analytical math engine</h3><p>Real dilution chemistry (3 strategies), concentration calculation and <strong>20-digit Decimal precision</strong> (zero floating-point error). Every calculation records the <strong>formula used</strong> in the audit trail. Requires a chemist + engineer.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#2563eb"><svg><use href="#ruler"/></svg></span>Universal unit conversion</h3><p>Mass and volume (kg·g·mg·µg·ng / L·mL·µL) + <strong>density conversion</strong> (mass↔volume), used by any module — lab, inventory, production.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#0d9488"><svg><use href="#finger"/></svg></span>Unified cryptographic trail</h3><p><strong>SHA-256</strong> chaining + <strong>Ed25519</strong> signature across the 12 modules, with the <strong>"meaning of the signature"</strong> (21 CFR Part 11 §11.50). Alter one character, the chain breaks.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#4f46e5"><svg><use href="#lock"/></svg></span>Multi-tenant + security</h3><p>Physical isolation with <strong>one PostgreSQL schema per company</strong>, RBAC by department and MFA. One company's data is inaccessible to another.</p></div>
+      <div class="found" style="grid-column:1/-1"><h3><span class="ic" style="background:#7c3aed"><svg><use href="#link"/></svg></span>Native integration — "everything linked" (not middleware)</h3><p>A single data model where a datum is born in one module and runs the cycle by itself (assay → CoA → training → competency matrix). Not separate systems joined by fragile connectors — it's <strong>one organism</strong>. It can't be added later; it must be designed from day 1, and it's what makes the system <strong>non-substitutable by procurement</strong>.</p></div>
+    </div>
+  </div></section>
+
+  <!-- SECURITY -->
+  <section><div class="pad">
+    <div class="eyebrow">Security &amp; data protection</div>
+    <h2><span class="grad">Enterprise-grade security</span>, built in.</h2>
+    <p class="muted" style="margin:8px 0 16px">Authentication, sessions and data protected with the practices a security audit (and GDPR) expect — not a "basic login".</p>
+    <div class="founds">
+      <div class="found"><h3><span class="ic" style="background:#4f46e5"><svg><use href="#key"/></svg></span>Passwords &amp; authentication</h3><p>Passwords with <strong>bcrypt</strong> (never plaintext). <strong>Constant-time</strong> login (compares against a dummy hash) so response timing never reveals which emails exist. Generic error messages.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#dc2626"><svg><use href="#shield"/></svg></span>Brute-force protection</h3><p>Rate limiting in <strong>two layers</strong>: per IP (in memory) and per <strong>account + IP in the database</strong> with progressive lockout — evaluated <em>before</em> bcrypt, so a blocked attempt costs no hashing.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#0d9488"><svg><use href="#lock"/></svg></span>Secure sessions</h3><p><strong>HttpOnly + Secure + SameSite</strong> cookie (XSS/JS-proof, HTTPS-only). It holds only a <strong>256-bit random token</strong>; the real session lives on the server — <strong>revocable</strong>, with a 2h expiry and IP/device logging.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#2563eb"><svg><use href="#finger"/></svg></span>2FA (two-step)</h3><p>Optional TOTP: the password alone creates a <strong>pending session</strong> that accesses nothing until the 2nd factor. The TOTP secret is <strong>encrypted at rest (AES-256-GCM)</strong>. Enforcement available for admins.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#7c3aed"><svg><use href="#server"/></svg></span>Multi-tenant isolation + RBAC</h3><p>Each company in an <strong>isolated PostgreSQL schema</strong> — one company's data inaccessible to another. Access control by <strong>department and level</strong> (structural RBAC).</p></div>
+      <div class="found"><h3><span class="ic" style="background:#059669"><svg><use href="#link"/></svg></span>Integrity &amp; files</h3><p><strong>SHA-256 + Ed25519</strong> trail on every record. <strong>Private uploads</strong> — files served only via an authenticated, tenant-scoped API, never a public folder. Legacy IDOR flaw removed.</p></div>
+    </div>
+  </div></section>
+
+  <!-- MODULE BY MODULE -->
+  <section><div class="pad">
+    <div class="eyebrow">Module-by-module evaluation</div>
+    <h2>The 12 modules and their <span class="grad">premium features.</span></h2>
+    <p class="muted" style="margin:8px 0 18px">For each module: what it does, what's rare/premium, and why it's hard to replicate.</p>
+
+    <div class="mod" style="--acc:#059669">
+      <div class="top"><span class="code">LIMS</span><h3>Laboratory — Analysis</h3></div>
+      <p class="does">From sample intake to the Certificate of Analysis, with method-guided execution.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Step-by-step assay wizard</li>
+        <li><svg><use href="#c"/></svg>Dilution engine with real chemistry (3 strategies)</li>
+        <li><svg><use href="#c"/></svg>Concentration calculation + 20-digit precision</li>
+        <li><svg><use href="#c"/></svg>Every calculation audited with the formula used</li>
+        <li><svg><use href="#c"/></svg>Immutable CoA generated in 1 click</li>
+        <li><svg><use href="#c"/></svg>Segregation of duties (the analyst doesn't approve)</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> correct analytical calculation requires a chemist + engineer together; audited decimal precision is 21 CFR grade — not every premium commercial LIMS has it.</div>
+    </div>
+
+    <div class="mod" style="--acc:#ea580c">
+      <div class="top"><span class="code">QMS</span><h3>Quality Control &amp; Lab Inventory</h3></div>
+      <p class="does">Reagents, solutions, calibration curves, equipment and specifications — with automatic consumption.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Method as flowchart with automatic consumption</li>
+        <li><svg><use href="#c"/></svg>Calibration curves (serial / global / per-point)</li>
+        <li><svg><use href="#c"/></svg>Mother solution, batches and kits</li>
+        <li><svg><use href="#c"/></svg><strong>Blocks</strong> expired reagent / uncalibrated equipment</li>
+        <li><svg><use href="#c"/></svg>Culture media prep + sterilization (microbiology)</li>
+        <li><svg><use href="#c"/></svg>Inventory correction with full traceability</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> poka-yoke that <em>prevents</em> use (not just records it); microbiology is usually a separate LIMS; consumption auto-debited by method.</div>
+    </div>
+
+    <div class="mod" style="--acc:#2563eb">
+      <div class="top"><span class="code">DMS</span><h3>Documents</h3></div>
+      <p class="does">Procedures always on the current version, with approval, distribution and traceability.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Collaborative review with inline comments</li>
+        <li><svg><use href="#c"/></svg><strong>Automatic character-by-character comparison</strong></li>
+        <li><svg><use href="#c"/></svg>Digital and touch signature (tablet on the floor)</li>
+        <li><svg><use href="#c"/></svg>Templates with auto-filled placeholders</li>
+        <li><svg><use href="#c"/></svg>Distribution controlled by permission</li>
+        <li><svg><use href="#c"/></svg>Approved document triggers training</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> automatic diff + cryptographic signature + training trigger in a QMS is an uncommon combination.</div>
+    </div>
+
+    <div class="mod" style="--acc:#4f46e5">
+      <div class="top"><span class="code">TMS</span><h3>Training &amp; Competencies</h3></div>
+      <p class="does">Paths, quizzes and certificates — with a competency matrix that fills itself.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg><strong>Competency matrix filled automatically</strong></li>
+        <li><svg><use href="#c"/></svg>Quizzes with automatic grading</li>
+        <li><svg><use href="#c"/></svg>Attendance sheet digitally signed</li>
+        <li><svg><use href="#c"/></svg>Defines who must be trained</li>
+        <li><svg><use href="#c"/></svg>Certificates issued in 1 click</li>
+        <li><svg><use href="#c"/></svg>Linked to procedures and audit</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> the matrix updates from training and documents — the auditor asks, you open the screen. No spreadsheets.</div>
+    </div>
+
+    <div class="mod" style="--acc:#7c3aed">
+      <div class="top"><span class="code">BPM</span><h3>Workflows &amp; Forms</h3></div>
+      <p class="does">Design the process once; it runs, chases, notifies and records itself.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Visual flow designer</li>
+        <li><svg><use href="#c"/></svg>Fillable forms per step</li>
+        <li><svg><use href="#c"/></svg>Approval steps with digital signature</li>
+        <li><svg><use href="#c"/></svg>Documents and forms attached to steps</li>
+        <li><svg><use href="#c"/></svg>Panel of running instances</li>
+        <li><svg><use href="#c"/></svg>Configurable without code</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> BPM + forms + signature native and linked to documents, not an external add-on.</div>
+    </div>
+
+    <div class="mod" style="--acc:#0891b2">
+      <div class="top"><span class="code">WMS</span><h3>Logistics &amp; Inventory</h3></div>
+      <p class="does">From receiving to location, with full traceability and lab integration.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg><strong>Hierarchical nesting</strong> pallet→box→unit (up to 6 levels)</li>
+        <li><svg><use href="#c"/></svg>Returnables (IBC, pallet) with pool + tare per level</li>
+        <li><svg><use href="#c"/></svg>FEFO + automatic location assignment</li>
+        <li><svg><use href="#c"/></svg>Inventory computes the lab sample by itself</li>
+        <li><svg><use href="#c"/></svg>Container cleaning validation, cycle count, waste disposal</li>
+        <li><svg><use href="#c"/></svg>Code collector / scanner</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> nesting + returnables + FEFO + cleaning validation is <strong>dedicated-WMS</strong> grade, not "stock control".</div>
+    </div>
+
+    <div class="mod" style="--acc:#e11d48">
+      <div class="top"><span class="code">MES</span><h3>Production</h3></div>
+      <p class="does">The order computes consumption, reserves the lots and execution records what was actually used.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Real consumption + mass balance + yield</li>
+        <li><svg><use href="#c"/></svg>Losses, scrap, reprocessing and lot discard</li>
+        <li><svg><use href="#c"/></svg>FEFO reservation + picking + Batch Record (EBR)</li>
+        <li><svg><use href="#c"/></svg>Equipment NC check before running</li>
+        <li><svg><use href="#c"/></svg><strong>Forward / backward traceability + recall</strong></li>
+        <li><svg><use href="#c"/></svg>Formulas / recipes (BOM)</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> lot genealogy with <strong>recall capability</strong> + EBR + mass balance is pharma/food grade, not "order in a spreadsheet".</div>
+    </div>
+
+    <div class="mod" style="--acc:#dc2626">
+      <div class="top"><span class="code">SGQ</span><h3>Nonconformity, CAPA &amp; Change</h3></div>
+      <p class="does">From NC to corrective action, with automatic escalation and document generators.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>NC from defect catalog → investigation → <strong>escalates to CAPA</strong></li>
+        <li><svg><use href="#c"/></svg>CAPA with 5W2H / 8D, root causes, verification and team</li>
+        <li><svg><use href="#c"/></svg>Change Control with <strong>FMEA</strong> + regulatory impact</li>
+        <li><svg><use href="#c"/></svg>Multi-level change approval</li>
+        <li><svg><use href="#c"/></svg>OOS with phased investigation + automatic dossier</li>
+        <li><svg><use href="#c"/></svg>OOS opened automatically from the lab</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> full pharma-grade quality cycle (ICH Q9), <strong>automated</strong> — NC→CAPA→CC→OOS linked, with generated documents.</div>
+    </div>
+
+    <div class="mod" style="--acc:#0284c7">
+      <div class="top"><span class="code">AUD</span><h3>Quality Audit (ISO 19011)</h3></div>
+      <p class="does">From plan to dossier, with evidence and signatures.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Reusable catalog + automatically generated plan</li>
+        <li><svg><use href="#c"/></svg>Execution with evidence and touch signature</li>
+        <li><svg><use href="#c"/></svg>Opening/closing meetings with attendance</li>
+        <li><svg><use href="#c"/></svg>Score, findings and action plan</li>
+        <li><svg><use href="#c"/></svg>Dossier + report generated automatically</li>
+        <li><svg><use href="#c"/></svg>Audit dashboard and recurrence</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> full ISO 19011 cycle (plan → meeting → evidence → dossier) inside a QMS is uncommon.</div>
+    </div>
+
+    <div class="mod" style="--acc:#d97706">
+      <div class="top"><span class="code">MNT</span><h3>Maintenance &amp; Sanitation</h3></div>
+      <p class="does">Preventive that schedules itself and recorded sanitation.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Preventive plans that generate orders in the scheduler</li>
+        <li><svg><use href="#c"/></svg>Execution with checklist and result per item</li>
+        <li><svg><use href="#c"/></svg>Sanitation (sanitary cleaning) plans</li>
+        <li><svg><use href="#c"/></svg>Dashboard with MTBF / MTTR</li>
+        <li><svg><use href="#c"/></svg>NC → Maintenance Order</li>
+        <li><svg><use href="#c"/></svg>Full history per equipment</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> automatic preventive + line sanitation + indicators inside a quality system.</div>
+    </div>
+
+    <div class="mod" style="--acc:#0d9488">
+      <div class="top"><span class="code">HACCP</span><h3>Food Safety</h3></div>
+      <p class="does">From the hazard plan to the evidence the inspector asks for.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Hazard analysis (Severity × Probability)</li>
+        <li><svg><use href="#c"/></svg>CCP / OPRP via decision tree, validated limits</li>
+        <li><svg><use href="#c"/></svg>Monitoring per lot linked to production</li>
+        <li><svg><use href="#c"/></svg><strong>Deviation opened automatically</strong> when a limit is breached</li>
+        <li><svg><use href="#c"/></svg>Validation (P3) separated from verification (P6)</li>
+        <li><svg><use href="#c"/></svg>Signed report with integrity verification</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> real Codex 2020 / ISO 22000 (decision tree, auto-deviation), not a checklist.</div>
+    </div>
+
+    <div class="mod" style="--acc:#db2777">
+      <div class="top"><span class="code">SUP</span><h3>Supplier Qualification</h3></div>
+      <p class="does">Supplier qualified, evaluated, re-evaluated and traced.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Qualification with criteria and scorecard</li>
+        <li><svg><use href="#c"/></svg>Periodic evaluation and re-evaluation</li>
+        <li><svg><use href="#c"/></svg>Panel by status (approved / rejected / re-evaluate)</li>
+        <li><svg><use href="#c"/></svg>Supplier audit report</li>
+        <li><svg><use href="#c"/></svg>Integration with receiving and NC</li>
+        <li><svg><use href="#c"/></svg>Full history</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> qualification linked to receiving (WMS) and nonconformity (SGQ) — not an isolated record.</div>
+    </div>
+  </div></section>
+
+  <!-- REBUILD COST -->
+  <section><div class="pad">
+    <div class="eyebrow">What it would cost to rebuild</div>
+    <h2>Summing modules is linear. <span class="grad">Linking everything explodes the cost.</span></h2>
+    <p class="muted" style="margin:8px 0 4px">Bottom-up estimate based on the real measured scale (72k lines, 553 endpoints, 130+ tables) and market data for custom development:</p>
+    <div class="costbox">
+      <div class="r"><span>Build the 12 modules (sum, with shared infrastructure)</span><span class="v">US$ 1.0 – 1.5 M</span></div>
+      <div class="r"><span>+ Link everything natively (15–20 complex flows × US$ 20–80k)</span><span class="v">+ US$ 0.3 – 0.75 M</span></div>
+      <div class="r"><span>+ Premium depth (analytical engine, WMS/nesting, recall, pharma SGQ, microbiology)</span><span class="v">premium</span></div>
+      <div class="r tot"><b>Real rebuild cost</b><span class="v">US$ 1.5 – 2.25 M+ &nbsp;(R$ 7.5 – 11 M)</span></div>
+    </div>
+    <div class="callout" style="margin-top:16px"><strong>And the hardest part isn't the money:</strong> it's assembling and coordinating a team that masters <strong>standards + engineering + chemistry</strong> at once — an extremely rare profile — for 18 to 36 months, with the risk of not finishing. Here, it's already built and in production.</div>
+  </div></section>
+
+  <!-- COMPARABLE -->
+  <section><div class="pad">
+    <div class="eyebrow">Market comparable</div>
+    <h2>The honest comparable <span class="grad">isn't a cheap QMS.</span></h2>
+    <p class="muted" style="margin:8px 0 4px">With this depth, Mindexon replaces a stack of enterprise vendors — each billed separately, per year, forever:</p>
+    <div class="scroll"><table class="tbl">
+      <thead><tr><th>Function in Mindexon</th><th>Equivalent enterprise product</th><th>Typical cost</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Laboratory (LIMS)</strong></td><td>LabWare / Thermo / STARLIMS</td><td>US$ 250k setup + US$ 100k+/yr</td></tr>
+        <tr><td><strong>Quality (QMS/NC/CAPA/CC)</strong></td><td>MasterControl / Veeva Vault QMS</td><td>US$ 25k – 100k+/yr</td></tr>
+        <tr><td><strong>Production (MES) + recall</strong></td><td>Dedicated MES</td><td>six figures/yr</td></tr>
+        <tr><td><strong>Logistics (WMS)</strong></td><td>Dedicated WMS</td><td>six figures/yr</td></tr>
+        <tr><td><strong>Documents + Training</strong></td><td>eDMS + LMS</td><td>tens of thousands/yr</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout big" style="margin-top:16px">Mindexon delivers <strong>all of it in one system, linked</strong>, with cryptographic integrity — and you buy the asset <strong>once</strong>, instead of renting five vendors forever.</div>
+  </div></section>
+
+  <!-- CONCLUSION -->
+  <section><div class="pad">
+    <div class="eyebrow">Conclusion</div>
+    <h2>An <span class="grad">enterprise-grade asset</span>, ready.</h2>
+    <p class="lead" style="margin-top:8px">The code audit confirms it: Mindexon is not an MVP nor a bundle of CRUDs. It's an enterprise-grade product, with domain engineering (chemistry, regulatory, logistics) that requires a rare team to exist — and it's already built, working and compliant.</p>
+    <p class="muted"><strong>Objective rebuild cost: US$ 1.5 – 2.25 M+ (R$ 7.5 – 11 M).</strong> The asset's sale-price positioning is being defined — this dossier establishes the value base on which that conversation happens.</p>
+  </div></section>
+
+  <div class="foot"><div class="pad" style="padding-top:22px;padding-bottom:22px">
+    Mindexon · Technical Value Dossier · Confidential document · 2026 · <a href="mailto:igor.palagi@outlook.com">igor.palagi@outlook.com</a>
+  </div></div>
+
+</div>
+
+</body>
+</html>
