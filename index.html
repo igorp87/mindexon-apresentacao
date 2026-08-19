@@ -4,6 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mindexon — Apresentação</title>
+<meta name="description" content="Plataforma completa de qualidade regulada — LIMS, qualidade, produção, logística, documentos e treinamentos num sistema só. ISO 17025 · 21 CFR Part 11. Deck + dossiê técnico.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mindexon">
+<meta property="og:url" content="https://apresentacao.mindexon.com/">
+<meta property="og:title" content="Mindexon — A plataforma completa de qualidade regulada">
+<meta property="og:description" content="LIMS, qualidade, produção, logística, documentos e treinamentos — num sistema só, pronto e conforme (ISO 17025 · 21 CFR Part 11 · ALCOA+). Deck de apresentação + dossiê técnico de valor.">
+<meta property="og:image" content="https://apresentacao.mindexon.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mindexon — A plataforma completa de qualidade regulada">
+<meta name="twitter:description" content="LIMS, qualidade, produção, logística, documentos e treinamentos — num sistema só, pronto e conforme. Deck + dossiê técnico.">
+<meta name="twitter:image" content="https://apresentacao.mindexon.com/og-image.png">
 <style>
   :root{
     --bg:#020617; --panel:rgba(30,41,59,.5); --line:rgba(148,163,184,.16); --line2:rgba(148,163,184,.28);
@@ -44,6 +59,11 @@
   .badges{margin-top:34px;color:var(--dim);font-size:.85rem;letter-spacing:.02em}
   footer{margin-top:26px;color:var(--dim);font-size:.85rem}
   footer a{color:var(--blue);text-decoration:none}
+  .lang-toggle{position:fixed;top:16px;right:16px;z-index:10;display:flex;gap:3px;
+    background:rgba(15,23,42,.7);border:1px solid var(--line2);border-radius:999px;padding:3px;backdrop-filter:blur(6px)}
+  .lang-toggle button{border:none;background:transparent;color:var(--muted);font-weight:700;font-size:.72rem;
+    letter-spacing:.03em;padding:5px 12px;border-radius:999px;cursor:pointer;transition:.2s}
+  .lang-toggle button.on{background:linear-gradient(90deg,#2563eb,#4f46e5);color:#fff}
 </style>
 </head>
 <body>
@@ -62,11 +82,13 @@
 
 <div class="bg"><div class="grid"></div><div class="glow g1"></div><div class="glow g2"></div></div>
 
+<div class="lang-toggle" id="langToggle"><button data-set="pt">PT</button><button data-set="en">EN</button></div>
+
 <main>
   <svg class="wordmark"><use href="#logo"/></svg>
-  <div class="eyebrow">Apresentação · Confidencial</div>
-  <h1>A plataforma completa de <span class="grad">qualidade regulada.</span></h1>
-  <p class="sub">Deck de apresentação e dossiê técnico de valor. Escolha o idioma — <em>choose your language</em>:</p>
+  <div class="eyebrow" data-i18n="eyebrow">Apresentação · Confidencial</div>
+  <h1 data-i18n="h1">A plataforma completa de <span class="grad">qualidade regulada.</span></h1>
+  <p class="sub" data-i18n="sub">Deck de apresentação e dossiê técnico de valor. Escolha o idioma — <em>choose your language</em>:</p>
   <div class="grid2">
     <div class="lang">
       <div class="lbl">🇧🇷 Português</div>
@@ -82,5 +104,33 @@
   <div class="badges">ISO 17025 · 21 CFR Part 11 · ALCOA+ · LGPD</div>
   <footer><a href="mailto:igor.palagi@outlook.com">igor.palagi@outlook.com</a></footer>
 </main>
+
+<script>
+  const I18N = {
+    pt: {
+      eyebrow: 'Apresentação · Confidencial',
+      h1: 'A plataforma completa de <span class="grad">qualidade regulada.</span>',
+      sub: 'Deck de apresentação e dossiê técnico de valor. Escolha o idioma — <em>choose your language</em>:'
+    },
+    en: {
+      eyebrow: 'Presentation · Confidential',
+      h1: 'The complete platform for <span class="grad">regulated quality.</span>',
+      sub: 'Presentation deck and technical value dossier. Choose your language:'
+    }
+  };
+  function applyLang(l){
+    document.documentElement.lang = (l === 'pt') ? 'pt-BR' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ el.innerHTML = I18N[l][el.getAttribute('data-i18n')]; });
+    document.querySelectorAll('#langToggle button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-set') === l); });
+    try { localStorage.setItem('mx-lang', l); } catch(e){}
+  }
+  var lang = null;
+  try { lang = localStorage.getItem('mx-lang'); } catch(e){}
+  if (!lang) { lang = ((navigator.language || 'en').toLowerCase().indexOf('pt') === 0) ? 'pt' : 'en'; }
+  applyLang(lang);
+  document.getElementById('langToggle').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (b) applyLang(b.getAttribute('data-set'));
+  });
+</script>
 </body>
 </html>
