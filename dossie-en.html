@@ -162,7 +162,7 @@
       <div class="stat"><div class="n g">~74k</div><div class="l">lines of code</div></div>
       <div class="stat"><div class="n g">170+</div><div class="l">database tables</div></div>
       <div class="stat"><div class="n">384</div><div class="l">screens and components</div></div>
-      <div class="stat"><div class="n">12</div><div class="l">modules + BI &amp; platform layers</div></div>
+      <div class="stat"><div class="n">11</div><div class="l">modules + 2 layers</div></div>
       <div class="stat"><div class="n">PT / EN</div><div class="l">188 translation files</div></div>
     </div>
   </div></section>
@@ -175,7 +175,7 @@
     <div class="founds">
       <div class="found"><h3><span class="ic" style="background:#059669"><svg><use href="#calc"/></svg></span>Analytical math engine</h3><p>Real dilution chemistry (3 strategies), concentration calculation and <strong>20-digit Decimal precision</strong> (zero floating-point error). Every calculation records the <strong>formula used</strong> in the audit trail. Requires a chemist + engineer.</p></div>
       <div class="found"><h3><span class="ic" style="background:#2563eb"><svg><use href="#ruler"/></svg></span>Universal unit conversion</h3><p>Mass and volume (kg·g·mg·µg·ng / L·mL·µL) + <strong>density conversion</strong> (mass↔volume), used by any module — lab, inventory, production.</p></div>
-      <div class="found"><h3><span class="ic" style="background:#0d9488"><svg><use href="#finger"/></svg></span>Unified cryptographic trail</h3><p><strong>SHA-256</strong> chaining + <strong>Ed25519</strong> signature across the 12 modules, with the <strong>"meaning of the signature"</strong> (21 CFR Part 11 §11.50). Alter one character, the chain breaks.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#0d9488"><svg><use href="#finger"/></svg></span>Unified cryptographic trail</h3><p><strong>SHA-256</strong> chaining + <strong>Ed25519</strong> signature across all modules, with the <strong>"meaning of the signature"</strong> (21 CFR Part 11 §11.50). Alter one character, the chain breaks.</p></div>
       <div class="found"><h3><span class="ic" style="background:#4f46e5"><svg><use href="#lock"/></svg></span>Multi-tenant + security</h3><p>Physical isolation with <strong>one PostgreSQL schema per company</strong>, RBAC by department and MFA. One company's data is inaccessible to another.</p></div>
       <div class="found" style="grid-column:1/-1"><h3><span class="ic" style="background:#7c3aed"><svg><use href="#link"/></svg></span>Native integration — "everything linked" (not middleware)</h3><p>A single data model where a datum is born in one module and runs the cycle by itself (assay → CoA → training → competency matrix). Not separate systems joined by fragile connectors — it's <strong>one organism</strong>. It can't be added later; it must be designed from day 1, and it's what makes the system <strong>non-substitutable by procurement</strong>.</p></div>
     </div>
@@ -203,33 +203,21 @@
     <p class="muted" style="margin:8px 0 18px">For each module: what it does, what's rare/premium, and why it's hard to replicate.</p>
 
     <div class="mod" style="--acc:#059669">
-      <div class="top"><span class="code">LIMS</span><h3>Laboratory — Analysis</h3></div>
-      <p class="does">From sample intake to the Certificate of Analysis, with method-guided execution.</p>
+      <div class="top"><span class="code">LIMS</span><h3>Laboratory — LIMS &amp; Quality Control</h3></div>
+      <p class="does">From sample intake to the Certificate of Analysis — with reagents, curves, calibration and specifications under control. LIMS and Quality Control in a single module.</p>
       <ul>
         <li><svg><use href="#c"/></svg>Step-by-step assay wizard</li>
-        <li><svg><use href="#c"/></svg>Dilution engine with real chemistry (3 strategies)</li>
-        <li><svg><use href="#c"/></svg>Concentration calculation + 20-digit precision</li>
+        <li><svg><use href="#c"/></svg>Dilution engine with real chemistry (3 strategies) + 20-digit precision</li>
         <li><svg><use href="#c"/></svg>Every calculation audited with the formula used</li>
-        <li><svg><use href="#c"/></svg>Immutable CoA generated in 1 click</li>
-        <li><svg><use href="#c"/></svg>Segregation of duties (the analyst doesn't approve)</li>
-        <li><svg><use href="#c"/></svg><strong>Sample retention</strong> (reserve samples) with controlled disposal</li>
-        <li><svg><use href="#c"/></svg>Regulatory reports and lab analytics</li>
-      </ul>
-      <div class="rare"><b>Rare because:</b> correct analytical calculation requires a chemist + engineer together; audited decimal precision is 21 CFR grade — not every premium commercial LIMS has it.</div>
-    </div>
-
-    <div class="mod" style="--acc:#ea580c">
-      <div class="top"><span class="code">QMS</span><h3>Quality Control &amp; Lab Inventory</h3></div>
-      <p class="does">Reagents, solutions, calibration curves, equipment and specifications — with automatic consumption.</p>
-      <ul>
-        <li><svg><use href="#c"/></svg>Method as flowchart with automatic consumption</li>
-        <li><svg><use href="#c"/></svg>Calibration curves (serial / global / per-point)</li>
-        <li><svg><use href="#c"/></svg>Mother solution, batches and kits</li>
+        <li><svg><use href="#c"/></svg>Immutable CoA in 1 click + segregation of duties</li>
+        <li><svg><use href="#c"/></svg>Method as flowchart with automatic consumption by method</li>
+        <li><svg><use href="#c"/></svg>Calibration curves (serial / global / per-point), mother solution, batches and kits</li>
         <li><svg><use href="#c"/></svg><strong>Blocks</strong> expired reagent / uncalibrated equipment</li>
         <li><svg><use href="#c"/></svg>Culture media prep + sterilization (microbiology)</li>
-        <li><svg><use href="#c"/></svg>Inventory correction with full traceability</li>
+        <li><svg><use href="#c"/></svg><strong>Sample retention</strong> (reserve samples) + traceable inventory correction</li>
+        <li><svg><use href="#c"/></svg>Regulatory reports and lab analytics</li>
       </ul>
-      <div class="rare"><b>Rare because:</b> poka-yoke that <em>prevents</em> use (not just records it); microbiology is usually a separate LIMS; consumption auto-debited by method.</div>
+      <div class="rare"><b>Rare because:</b> correct analytical calculation requires a chemist + engineer; audited decimal precision is 21 CFR grade; poka-yoke that <em>prevents</em> use (not just records it); microbiology is usually a separate LIMS.</div>
     </div>
 
     <div class="mod" style="--acc:#2563eb">
@@ -332,8 +320,8 @@
     </div>
 
     <div class="mod" style="--acc:#0284c7">
-      <div class="top"><span class="code">AUD</span><h3>Quality Audit (ISO 19011)</h3></div>
-      <p class="does">From plan to dossier, with evidence and signatures.</p>
+      <div class="top"><span class="code">AUD</span><h3>Quality Audit &amp; Suppliers (ISO 19011)</h3></div>
+      <p class="does">From plan to dossier, with evidence and signatures — including supplier qualification.</p>
       <ul>
         <li><svg><use href="#c"/></svg>Reusable catalog + automatically generated plan</li>
         <li><svg><use href="#c"/></svg>Execution with evidence and touch signature</li>
@@ -341,8 +329,9 @@
         <li><svg><use href="#c"/></svg>Score, findings and action plan</li>
         <li><svg><use href="#c"/></svg>Dossier + report generated automatically</li>
         <li><svg><use href="#c"/></svg>Audit dashboard and recurrence</li>
+        <li><svg><use href="#c"/></svg><strong>Supplier qualification</strong> with scorecard, re-evaluation and audit — linked to receiving (WMS) and NC</li>
       </ul>
-      <div class="rare"><b>Rare because:</b> full ISO 19011 cycle (plan → meeting → evidence → dossier) inside a QMS is uncommon.</div>
+      <div class="rare"><b>Rare because:</b> full ISO 19011 cycle (plan → meeting → evidence → dossier) + supplier qualification linked to receiving and NC, inside a QMS.</div>
     </div>
 
     <div class="mod" style="--acc:#d97706">
@@ -373,22 +362,10 @@
       <div class="rare"><b>Rare because:</b> real Codex 2020 / ISO 22000 (decision tree, auto-deviation), not a checklist.</div>
     </div>
 
-    <div class="mod" style="--acc:#db2777">
-      <div class="top"><span class="code">SUP</span><h3>Supplier Qualification</h3></div>
-      <p class="does">Supplier qualified, evaluated, re-evaluated and traced.</p>
-      <ul>
-        <li><svg><use href="#c"/></svg>Qualification with criteria and scorecard</li>
-        <li><svg><use href="#c"/></svg>Periodic evaluation and re-evaluation</li>
-        <li><svg><use href="#c"/></svg>Panel by status (approved / rejected / re-evaluate)</li>
-        <li><svg><use href="#c"/></svg>Supplier audit report</li>
-        <li><svg><use href="#c"/></svg>Integration with receiving and NC</li>
-        <li><svg><use href="#c"/></svg>Full history</li>
-      </ul>
-      <div class="rare"><b>Rare because:</b> qualification linked to receiving (WMS) and nonconformity (SGQ) — not an isolated record.</div>
-    </div>
+    <p class="muted" style="margin:26px 0 14px;font-weight:600;color:var(--ink);border-top:1px solid var(--line);padding-top:20px">On top of the 11 modules, <span class="grad">two cross-cutting layers</span> — not client modules; they're what multiplies the value:</p>
 
     <div class="mod" style="--acc:#0ea5e9">
-      <div class="top"><span class="code">BI</span><h3>Intelligence &amp; Analytics</h3></div>
+      <div class="top"><span class="code">LAYER · BI</span><h3>Intelligence &amp; Analytics</h3></div>
       <p class="does">A native, cross-cutting BI layer — the system doesn't just operate, it measures.</p>
       <ul>
         <li><svg><use href="#c"/></svg><strong>Lead time / bottlenecks</strong> — TAT decomposed with median and p90</li>
@@ -402,7 +379,7 @@
     </div>
 
     <div class="mod" style="--acc:#334155">
-      <div class="top"><span class="code">PLAT</span><h3>Platform &amp; Multi-company (Super-admin)</h3></div>
+      <div class="top"><span class="code">LAYER · PLATFORM</span><h3>Platform &amp; Multi-company (Super-admin)</h3></div>
       <p class="does">The control plane that turns the product into a platform resold under another brand.</p>
       <ul>
         <li><svg><use href="#c"/></svg>Multi-company panel with an <strong>isolated PostgreSQL schema</strong> per client</li>
@@ -415,7 +392,7 @@
       <div class="rare"><b>Rare because:</b> it's what makes <strong>real white-label</strong> possible (Revenue Engine 2) — toggling modules per tenant without touching the client's schema.</div>
     </div>
 
-    <div class="callout big" style="margin-top:16px"><strong>Beyond the 12 modules:</strong> a <strong>Consultants portal</strong> (a separate app — consultores.mindexon.com) where quality consultants deploy and resell the system. A second product and distribution channel, already built.</div>
+    <div class="callout big" style="margin-top:16px"><strong>Beyond the 11 modules and 2 layers:</strong> a <strong>Consultants portal</strong> (a separate app — consultores.mindexon.com) where quality consultants deploy and resell the system. A second product and distribution channel, already built.</div>
   </div></section>
 
   <!-- REBUILD COST -->
@@ -424,7 +401,7 @@
     <h2>Summing modules is linear. <span class="grad">Linking everything explodes the cost.</span></h2>
     <p class="muted" style="margin:8px 0 4px">Bottom-up estimate based on the real measured scale (74k lines, 554 endpoints, 170+ tables) and market data for custom development:</p>
     <div class="costbox">
-      <div class="r"><span>Build the 12 modules (sum, with shared infrastructure)</span><span class="v">US$ 1.0 – 1.5 M</span></div>
+      <div class="r"><span>Build the 11 modules + 2 layers (sum, with shared infrastructure)</span><span class="v">US$ 1.0 – 1.5 M</span></div>
       <div class="r"><span>+ Link everything natively (15–20 complex flows × US$ 20–80k)</span><span class="v">+ US$ 0.3 – 0.75 M</span></div>
       <div class="r"><span>+ Premium depth (analytical engine, WMS/nesting, recall, pharma SGQ, microbiology)</span><span class="v">premium</span></div>
       <div class="r tot"><b>Real rebuild cost</b><span class="v">US$ 1.5 – 2.25 M+ &nbsp;(R$ 7.5 – 11 M)</span></div>

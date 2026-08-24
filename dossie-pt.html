@@ -167,7 +167,7 @@
       <div class="stat"><div class="n g">~74 mil</div><div class="l">linhas de código</div></div>
       <div class="stat"><div class="n g">170+</div><div class="l">tabelas de banco de dados</div></div>
       <div class="stat"><div class="n">384</div><div class="l">telas e componentes</div></div>
-      <div class="stat"><div class="n">12</div><div class="l">módulos + camadas BI e plataforma</div></div>
+      <div class="stat"><div class="n">11</div><div class="l">módulos + 2 camadas</div></div>
       <div class="stat"><div class="n">PT / EN</div><div class="l">188 arquivos de tradução</div></div>
     </div>
   </div></section>
@@ -180,7 +180,7 @@
     <div class="founds">
       <div class="found"><h3><span class="ic" style="background:#059669"><svg><use href="#calc"/></svg></span>Motor matemático analítico</h3><p>Química de diluição real (3 estratégias), cálculo de concentração e precisão <strong>Decimal de 20 casas</strong> (zero erro de ponto flutuante). Cada cálculo grava a <strong>fórmula usada</strong> na trilha de auditoria. Exige químico + engenheiro.</p></div>
       <div class="found"><h3><span class="ic" style="background:#2563eb"><svg><use href="#ruler"/></svg></span>Conversão universal de unidades</h3><p>Massa e volume (kg·g·mg·µg·ng / L·mL·µL) + <strong>conversão por densidade</strong> (massa↔volume), usada por qualquer módulo — laboratório, estoque, produção.</p></div>
-      <div class="found"><h3><span class="ic" style="background:#0d9488"><svg><use href="#finger"/></svg></span>Trilha criptográfica unificada</h3><p>Encadeamento <strong>SHA-256</strong> + assinatura <strong>Ed25519</strong> atravessando os 12 módulos, com o <strong>"significado da assinatura"</strong> (21 CFR Part 11 §11.50). Adulterou 1 caractere, a cadeia quebra.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#0d9488"><svg><use href="#finger"/></svg></span>Trilha criptográfica unificada</h3><p>Encadeamento <strong>SHA-256</strong> + assinatura <strong>Ed25519</strong> atravessando todos os módulos, com o <strong>"significado da assinatura"</strong> (21 CFR Part 11 §11.50). Adulterou 1 caractere, a cadeia quebra.</p></div>
       <div class="found"><h3><span class="ic" style="background:#4f46e5"><svg><use href="#lock"/></svg></span>Multi-tenant + segurança</h3><p>Isolamento físico por <strong>schema PostgreSQL por empresa</strong>, RBAC por departamento e MFA. Dados de uma empresa são inacessíveis por outra.</p></div>
       <div class="found" style="grid-column:1/-1"><h3><span class="ic" style="background:#7c3aed"><svg><use href="#link"/></svg></span>Integração nativa — "tudo linkado" (não é middleware)</h3><p>Um único modelo de dados onde um dado nasce num módulo e percorre o ciclo sozinho (ensaio → COA → treinamento → matriz de competências). Não são sistemas separados conectados por conectores frágeis — é <strong>um organismo só</strong>. Isso não se adiciona depois; tem que ser desenhado desde o dia 1, e é o que torna o sistema <strong>não-substituível por procurement</strong>.</p></div>
     </div>
@@ -208,33 +208,21 @@
     <p class="muted" style="margin:8px 0 18px">Para cada módulo: o que faz, o que tem de raro/premium, e por que é difícil de replicar.</p>
 
     <div class="mod" style="--acc:#059669">
-      <div class="top"><span class="code">LIMS</span><h3>Laboratório — Análises</h3></div>
-      <p class="does">Do recebimento da amostra ao Certificado de Análise, com execução guiada por método.</p>
+      <div class="top"><span class="code">LIMS</span><h3>Laboratório — LIMS &amp; Controle de Qualidade</h3></div>
+      <p class="does">Do recebimento da amostra ao Certificado de Análise — com reagentes, curvas, calibração e especificações sob controle. LIMS e Controle de Qualidade num módulo só.</p>
       <ul>
         <li><svg><use href="#c"/></svg>Assistente de análise passo a passo</li>
-        <li><svg><use href="#c"/></svg>Motor de diluição com química real (3 estratégias)</li>
-        <li><svg><use href="#c"/></svg>Cálculo de concentração + precisão de 20 casas</li>
+        <li><svg><use href="#c"/></svg>Motor de diluição com química real (3 estratégias) + precisão de 20 casas</li>
         <li><svg><use href="#c"/></svg>Cada cálculo auditado com a fórmula usada</li>
-        <li><svg><use href="#c"/></svg>COA imutável gerado em 1 clique</li>
-        <li><svg><use href="#c"/></svg>Segregação de funções (quem analisa não aprova)</li>
-        <li><svg><use href="#c"/></svg><strong>Retenção de amostras</strong> (contra-amostras) com descarte controlado</li>
-        <li><svg><use href="#c"/></svg>Relatórios regulatórios e analytics do laboratório</li>
-      </ul>
-      <div class="rare"><b>Raro porque:</b> cálculo analítico correto exige químico + engenheiro juntos; precisão decimal auditada é grau 21 CFR — nem todo LIMS comercial premium tem.</div>
-    </div>
-
-    <div class="mod" style="--acc:#ea580c">
-      <div class="top"><span class="code">QMS</span><h3>Controle de Qualidade &amp; Estoque de Laboratório</h3></div>
-      <p class="does">Reagentes, soluções, curvas de calibração, equipamentos e especificações — com consumo automático.</p>
-      <ul>
-        <li><svg><use href="#c"/></svg>Método como fluxograma com consumo automático</li>
-        <li><svg><use href="#c"/></svg>Curvas de calibração (seriada / global / por ponto)</li>
-        <li><svg><use href="#c"/></svg>Solução-mãe, lotes, kits e concentrações</li>
+        <li><svg><use href="#c"/></svg>COA imutável em 1 clique + segregação de funções</li>
+        <li><svg><use href="#c"/></svg>Método como fluxograma com consumo automático por método</li>
+        <li><svg><use href="#c"/></svg>Curvas de calibração (seriada / global / por ponto), solução-mãe, lotes e kits</li>
         <li><svg><use href="#c"/></svg><strong>Bloqueio</strong> de reagente vencido / equipamento sem calibração</li>
         <li><svg><use href="#c"/></svg>Preparo de meios de cultura + esterilização (microbiologia)</li>
-        <li><svg><use href="#c"/></svg>Correção de estoque com rastreabilidade total</li>
+        <li><svg><use href="#c"/></svg><strong>Retenção de amostras</strong> (contra-amostras) + correção de estoque rastreável</li>
+        <li><svg><use href="#c"/></svg>Relatórios regulatórios e analytics do laboratório</li>
       </ul>
-      <div class="rare"><b>Raro porque:</b> poka-yoke que <em>impede</em> o uso (não só registra); microbiologia costuma ser um LIMS à parte; consumo debitado automaticamente por método.</div>
+      <div class="rare"><b>Raro porque:</b> cálculo analítico correto exige químico + engenheiro; precisão decimal auditada é grau 21 CFR; poka-yoke que <em>impede</em> o uso (não só registra); microbiologia costuma ser um LIMS à parte.</div>
     </div>
 
     <div class="mod" style="--acc:#2563eb">
@@ -337,8 +325,8 @@
     </div>
 
     <div class="mod" style="--acc:#0284c7">
-      <div class="top"><span class="code">AUD</span><h3>Auditoria da Qualidade (ISO 19011)</h3></div>
-      <p class="does">Do plano ao dossiê, com evidências e assinaturas.</p>
+      <div class="top"><span class="code">AUD</span><h3>Auditoria da Qualidade &amp; Fornecedores (ISO 19011)</h3></div>
+      <p class="does">Do plano ao dossiê, com evidências e assinaturas — incluindo qualificação de fornecedores.</p>
       <ul>
         <li><svg><use href="#c"/></svg>Catálogo reutilizável + plano gerado automaticamente</li>
         <li><svg><use href="#c"/></svg>Execução com evidências e assinatura por toque</li>
@@ -346,8 +334,9 @@
         <li><svg><use href="#c"/></svg>Score, achados e plano de ação</li>
         <li><svg><use href="#c"/></svg>Dossiê + relatório gerados automaticamente</li>
         <li><svg><use href="#c"/></svg>Dashboard e recorrência de auditorias</li>
+        <li><svg><use href="#c"/></svg><strong>Qualificação de fornecedores</strong> com scorecard, reavaliação e auditoria — ligada ao recebimento (WMS) e à NC</li>
       </ul>
-      <div class="rare"><b>Raro porque:</b> ciclo ISO 19011 completo (plano → reunião → evidência → dossiê) dentro de um QMS é incomum.</div>
+      <div class="rare"><b>Raro porque:</b> ciclo ISO 19011 completo (plano → reunião → evidência → dossiê) + qualificação de fornecedor ligada ao recebimento e à NC, dentro de um QMS.</div>
     </div>
 
     <div class="mod" style="--acc:#d97706">
@@ -378,22 +367,10 @@
       <div class="rare"><b>Raro porque:</b> Codex 2020 / ISO 22000 de verdade (árvore decisória, auto-desvio), não um checklist.</div>
     </div>
 
-    <div class="mod" style="--acc:#db2777">
-      <div class="top"><span class="code">SUP</span><h3>Qualificação de Fornecedores</h3></div>
-      <p class="does">Fornecedor qualificado, avaliado, reavaliado e rastreado.</p>
-      <ul>
-        <li><svg><use href="#c"/></svg>Qualificação com critérios e scorecard</li>
-        <li><svg><use href="#c"/></svg>Avaliação e reavaliação periódica</li>
-        <li><svg><use href="#c"/></svg>Painel por status (aprovado / reprovado / reavaliar)</li>
-        <li><svg><use href="#c"/></svg>Relatório de auditoria de fornecedor</li>
-        <li><svg><use href="#c"/></svg>Integração com recebimento e NC</li>
-        <li><svg><use href="#c"/></svg>Histórico completo</li>
-      </ul>
-      <div class="rare"><b>Raro porque:</b> qualificação ligada ao recebimento (WMS) e à não-conformidade (SGQ) — não um cadastro isolado.</div>
-    </div>
+    <p class="muted" style="margin:26px 0 14px;font-weight:600;color:var(--ink);border-top:1px solid var(--line);padding-top:20px">Sobre os 11 módulos, <span class="grad">duas camadas transversais</span> — não são módulos de cliente; são o que multiplica o valor:</p>
 
     <div class="mod" style="--acc:#0ea5e9">
-      <div class="top"><span class="code">BI</span><h3>Inteligência &amp; Analytics</h3></div>
+      <div class="top"><span class="code">CAMADA · BI</span><h3>Inteligência &amp; Analytics</h3></div>
       <p class="does">Camada de BI nativa e transversal — o sistema não só opera, ele mede.</p>
       <ul>
         <li><svg><use href="#c"/></svg><strong>Lead time / gargalos</strong> — TAT decomposto com mediana e p90</li>
@@ -407,7 +384,7 @@
     </div>
 
     <div class="mod" style="--acc:#334155">
-      <div class="top"><span class="code">PLAT</span><h3>Plataforma &amp; Multi-empresa (Super-admin)</h3></div>
+      <div class="top"><span class="code">CAMADA · PLATAFORMA</span><h3>Plataforma &amp; Multi-empresa (Super-admin)</h3></div>
       <p class="does">O plano de controle que transforma o produto em plataforma revendável sob outra marca.</p>
       <ul>
         <li><svg><use href="#c"/></svg>Painel multi-empresa com <strong>schema PostgreSQL isolado</strong> por cliente</li>
@@ -420,7 +397,7 @@
       <div class="rare"><b>Raro porque:</b> é o que viabiliza o <strong>white-label real</strong> (Motor 2 de receita) — ligar/desligar módulos por tenant sem tocar no schema do cliente.</div>
     </div>
 
-    <div class="callout big" style="margin-top:16px"><strong>Além dos 12 módulos:</strong> um <strong>portal de Consultores</strong> (aplicação separada — consultores.mindexon.com) onde consultores de qualidade implantam e revendem o sistema. Um segundo produto e canal de distribuição, já construído.</div>
+    <div class="callout big" style="margin-top:16px"><strong>Além dos 11 módulos e das 2 camadas:</strong> um <strong>portal de Consultores</strong> (aplicação separada — consultores.mindexon.com) onde consultores de qualidade implantam e revendem o sistema. Um segundo produto e canal de distribuição, já construído.</div>
   </div></section>
 
   <!-- CUSTO DE RECONSTRUÇÃO -->
@@ -429,7 +406,7 @@
     <h2>Somar módulos é linear. <span class="grad">Linkar tudo explode o custo.</span></h2>
     <p class="muted" style="margin:8px 0 4px">Estimativa bottom-up com base na escala real medida (74 mil linhas, 554 endpoints, 170+ tabelas) e em dados de mercado de desenvolvimento sob medida:</p>
     <div class="costbox">
-      <div class="r"><span>Construir os 12 módulos (soma, com infra compartilhada)</span><span class="v">US$ 1,0 – 1,5 M</span></div>
+      <div class="r"><span>Construir os 11 módulos + 2 camadas (soma, com infra compartilhada)</span><span class="v">US$ 1,0 – 1,5 M</span></div>
       <div class="r"><span>+ Linkar tudo nativamente (15–20 fluxos complexos × US$ 20–80k)</span><span class="v">+ US$ 0,3 – 0,75 M</span></div>
       <div class="r"><span>+ Profundidade premium (motor analítico, WMS/nesting, recall, SGQ farma, microbiologia)</span><span class="v">prêmio</span></div>
       <div class="r tot"><b>Custo real de reconstrução</b><span class="v">US$ 1,5 – 2,25 M+ &nbsp;(R$ 7,5 – 11 M)</span></div>
