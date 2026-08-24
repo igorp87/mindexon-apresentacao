@@ -158,12 +158,12 @@
     <h2>It's not a QMS. It's an enterprise GxP stack <span class="grad">in one system.</span></h2>
     <p class="lead" style="margin-top:10px">Mindexon brings together what regulated industry normally buys as <strong>four or five separate systems</strong> — LIMS, QMS, MES, WMS and training — into a single native product, with cryptographic integrity and enterprise-vendor depth in every module. The code-audit numbers:</p>
     <div class="stats">
-      <div class="stat"><div class="n g">553</div><div class="l">API endpoints (129 in the lab alone)</div></div>
-      <div class="stat"><div class="n g">~72k</div><div class="l">lines of code</div></div>
-      <div class="stat"><div class="n g">130+</div><div class="l">database tables</div></div>
+      <div class="stat"><div class="n g">554</div><div class="l">API endpoints (129 in the lab alone)</div></div>
+      <div class="stat"><div class="n g">~74k</div><div class="l">lines of code</div></div>
+      <div class="stat"><div class="n g">170+</div><div class="l">database tables</div></div>
       <div class="stat"><div class="n">384</div><div class="l">screens and components</div></div>
-      <div class="stat"><div class="n">12</div><div class="l">integrated modules</div></div>
-      <div class="stat"><div class="n">PT / EN</div><div class="l">187 translation files</div></div>
+      <div class="stat"><div class="n">12</div><div class="l">modules + BI &amp; platform layers</div></div>
+      <div class="stat"><div class="n">PT / EN</div><div class="l">188 translation files</div></div>
     </div>
   </div></section>
 
@@ -212,6 +212,8 @@
         <li><svg><use href="#c"/></svg>Every calculation audited with the formula used</li>
         <li><svg><use href="#c"/></svg>Immutable CoA generated in 1 click</li>
         <li><svg><use href="#c"/></svg>Segregation of duties (the analyst doesn't approve)</li>
+        <li><svg><use href="#c"/></svg><strong>Sample retention</strong> (reserve samples) with controlled disposal</li>
+        <li><svg><use href="#c"/></svg>Regulatory reports and lab analytics</li>
       </ul>
       <div class="rare"><b>Rare because:</b> correct analytical calculation requires a chemist + engineer together; audited decimal precision is 21 CFR grade — not every premium commercial LIMS has it.</div>
     </div>
@@ -281,6 +283,7 @@
         <li><svg><use href="#c"/></svg>FEFO + automatic location assignment</li>
         <li><svg><use href="#c"/></svg>Inventory computes the lab sample by itself</li>
         <li><svg><use href="#c"/></svg>Container cleaning validation, cycle count, waste disposal</li>
+        <li><svg><use href="#c"/></svg><strong>Shipping</strong> with FEFO allocation (Product → Allocation → Summary)</li>
         <li><svg><use href="#c"/></svg>Code collector / scanner</li>
       </ul>
       <div class="rare"><b>Rare because:</b> nesting + returnables + FEFO + cleaning validation is <strong>dedicated-WMS</strong> grade, not "stock control".</div>
@@ -383,13 +386,43 @@
       </ul>
       <div class="rare"><b>Rare because:</b> qualification linked to receiving (WMS) and nonconformity (SGQ) — not an isolated record.</div>
     </div>
+
+    <div class="mod" style="--acc:#0ea5e9">
+      <div class="top"><span class="code">BI</span><h3>Intelligence &amp; Analytics</h3></div>
+      <p class="does">A native, cross-cutting BI layer — the system doesn't just operate, it measures.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg><strong>Lead time / bottlenecks</strong> — TAT decomposed with median and p90</li>
+        <li><svg><use href="#c"/></svg>OOS, trend (OOT) and rejection analytics</li>
+        <li><svg><use href="#c"/></svg>Performance by analyst and by method</li>
+        <li><svg><use href="#c"/></svg>Document analytics (approval time, flow, timeline)</li>
+        <li><svg><use href="#c"/></svg>Training, workflow and maintenance BI (MTBF/MTTR)</li>
+        <li><svg><use href="#c"/></svg>Period dashboards with report export</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> native regulatory BI (bottlenecks, OOT, per-analyst performance) inside the QMS itself — not an external BI bolted on later.</div>
+    </div>
+
+    <div class="mod" style="--acc:#334155">
+      <div class="top"><span class="code">PLAT</span><h3>Platform &amp; Multi-company (Super-admin)</h3></div>
+      <p class="does">The control plane that turns the product into a platform resold under another brand.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Multi-company panel with an <strong>isolated PostgreSQL schema</strong> per client</li>
+        <li><svg><use href="#c"/></svg><strong>Install / enable / uninstall modules per company</strong> (the white-label engine)</li>
+        <li><svg><use href="#c"/></svg>Job scheduler (preventives, deadlines, recurrences)</li>
+        <li><svg><use href="#c"/></svg>Invites &amp; onboarding, global permissions</li>
+        <li><svg><use href="#c"/></svg>Platform statistics and KPIs</li>
+        <li><svg><use href="#c"/></svg>Platform audit and logs</li>
+      </ul>
+      <div class="rare"><b>Rare because:</b> it's what makes <strong>real white-label</strong> possible (Revenue Engine 2) — toggling modules per tenant without touching the client's schema.</div>
+    </div>
+
+    <div class="callout big" style="margin-top:16px"><strong>Beyond the 12 modules:</strong> a <strong>Consultants portal</strong> (a separate app — consultores.mindexon.com) where quality consultants deploy and resell the system. A second product and distribution channel, already built.</div>
   </div></section>
 
   <!-- REBUILD COST -->
   <section><div class="pad">
     <div class="eyebrow">What it would cost to rebuild</div>
     <h2>Summing modules is linear. <span class="grad">Linking everything explodes the cost.</span></h2>
-    <p class="muted" style="margin:8px 0 4px">Bottom-up estimate based on the real measured scale (72k lines, 553 endpoints, 130+ tables) and market data for custom development:</p>
+    <p class="muted" style="margin:8px 0 4px">Bottom-up estimate based on the real measured scale (74k lines, 554 endpoints, 170+ tables) and market data for custom development:</p>
     <div class="costbox">
       <div class="r"><span>Build the 12 modules (sum, with shared infrastructure)</span><span class="v">US$ 1.0 – 1.5 M</span></div>
       <div class="r"><span>+ Link everything natively (15–20 complex flows × US$ 20–80k)</span><span class="v">+ US$ 0.3 – 0.75 M</span></div>

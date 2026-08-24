@@ -163,12 +163,12 @@
     <h2>Não é um QMS. É um stack GxP enterprise <span class="grad">num sistema só.</span></h2>
     <p class="lead" style="margin-top:10px">O Mindexon reúne o que a indústria regulada normalmente compra como <strong>quatro ou cinco sistemas separados</strong> — LIMS, QMS, MES, WMS e treinamentos — num único produto nativo, com integridade criptográfica e profundidade de fornecedor enterprise em cada módulo. Os números da auditoria de código:</p>
     <div class="stats">
-      <div class="stat"><div class="n g">553</div><div class="l">endpoints de API (129 só no laboratório)</div></div>
-      <div class="stat"><div class="n g">~72 mil</div><div class="l">linhas de código</div></div>
-      <div class="stat"><div class="n g">130+</div><div class="l">tabelas de banco de dados</div></div>
+      <div class="stat"><div class="n g">554</div><div class="l">endpoints de API (129 só no laboratório)</div></div>
+      <div class="stat"><div class="n g">~74 mil</div><div class="l">linhas de código</div></div>
+      <div class="stat"><div class="n g">170+</div><div class="l">tabelas de banco de dados</div></div>
       <div class="stat"><div class="n">384</div><div class="l">telas e componentes</div></div>
-      <div class="stat"><div class="n">12</div><div class="l">módulos integrados</div></div>
-      <div class="stat"><div class="n">PT / EN</div><div class="l">187 arquivos de tradução</div></div>
+      <div class="stat"><div class="n">12</div><div class="l">módulos + camadas BI e plataforma</div></div>
+      <div class="stat"><div class="n">PT / EN</div><div class="l">188 arquivos de tradução</div></div>
     </div>
   </div></section>
 
@@ -217,6 +217,8 @@
         <li><svg><use href="#c"/></svg>Cada cálculo auditado com a fórmula usada</li>
         <li><svg><use href="#c"/></svg>COA imutável gerado em 1 clique</li>
         <li><svg><use href="#c"/></svg>Segregação de funções (quem analisa não aprova)</li>
+        <li><svg><use href="#c"/></svg><strong>Retenção de amostras</strong> (contra-amostras) com descarte controlado</li>
+        <li><svg><use href="#c"/></svg>Relatórios regulatórios e analytics do laboratório</li>
       </ul>
       <div class="rare"><b>Raro porque:</b> cálculo analítico correto exige químico + engenheiro juntos; precisão decimal auditada é grau 21 CFR — nem todo LIMS comercial premium tem.</div>
     </div>
@@ -286,6 +288,7 @@
         <li><svg><use href="#c"/></svg>FEFO + endereçamento automático</li>
         <li><svg><use href="#c"/></svg>O estoque calcula sozinho a amostra do laboratório</li>
         <li><svg><use href="#c"/></svg>Cleaning validation de container, cycle count, descarte de resíduos</li>
+        <li><svg><use href="#c"/></svg><strong>Expedição</strong> com alocação FEFO (Produto → Alocação → Resumo)</li>
         <li><svg><use href="#c"/></svg>Coletor / scanner de código</li>
       </ul>
       <div class="rare"><b>Raro porque:</b> nesting + retornáveis + FEFO + cleaning validation é nível de <strong>WMS dedicado</strong>, não "controle de estoque".</div>
@@ -388,13 +391,43 @@
       </ul>
       <div class="rare"><b>Raro porque:</b> qualificação ligada ao recebimento (WMS) e à não-conformidade (SGQ) — não um cadastro isolado.</div>
     </div>
+
+    <div class="mod" style="--acc:#0ea5e9">
+      <div class="top"><span class="code">BI</span><h3>Inteligência &amp; Analytics</h3></div>
+      <p class="does">Camada de BI nativa e transversal — o sistema não só opera, ele mede.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg><strong>Lead time / gargalos</strong> — TAT decomposto com mediana e p90</li>
+        <li><svg><use href="#c"/></svg>Analytics de OOS, tendência (OOT) e rejeições</li>
+        <li><svg><use href="#c"/></svg>Desempenho por analista e por método</li>
+        <li><svg><use href="#c"/></svg>Analytics de documentos (tempo de aprovação, fluxo, timeline)</li>
+        <li><svg><use href="#c"/></svg>BI de treinamentos, workflow e manutenção (MTBF/MTTR)</li>
+        <li><svg><use href="#c"/></svg>Dashboards por período com exportação de relatório</li>
+      </ul>
+      <div class="rare"><b>Raro porque:</b> BI regulatório nativo (gargalos, OOT, desempenho por analista) dentro do próprio QMS — não um BI externo plugado depois.</div>
+    </div>
+
+    <div class="mod" style="--acc:#334155">
+      <div class="top"><span class="code">PLAT</span><h3>Plataforma &amp; Multi-empresa (Super-admin)</h3></div>
+      <p class="does">O plano de controle que transforma o produto em plataforma revendável sob outra marca.</p>
+      <ul>
+        <li><svg><use href="#c"/></svg>Painel multi-empresa com <strong>schema PostgreSQL isolado</strong> por cliente</li>
+        <li><svg><use href="#c"/></svg><strong>Instalar / ativar / desinstalar módulos por empresa</strong> (motor do white-label)</li>
+        <li><svg><use href="#c"/></svg>Scheduler de jobs (preventivas, prazos, recorrências)</li>
+        <li><svg><use href="#c"/></svg>Convites &amp; onboarding, permissões globais</li>
+        <li><svg><use href="#c"/></svg>Estatísticas e KPIs de plataforma</li>
+        <li><svg><use href="#c"/></svg>Auditoria e logs de plataforma</li>
+      </ul>
+      <div class="rare"><b>Raro porque:</b> é o que viabiliza o <strong>white-label real</strong> (Motor 2 de receita) — ligar/desligar módulos por tenant sem tocar no schema do cliente.</div>
+    </div>
+
+    <div class="callout big" style="margin-top:16px"><strong>Além dos 12 módulos:</strong> um <strong>portal de Consultores</strong> (aplicação separada — consultores.mindexon.com) onde consultores de qualidade implantam e revendem o sistema. Um segundo produto e canal de distribuição, já construído.</div>
   </div></section>
 
   <!-- CUSTO DE RECONSTRUÇÃO -->
   <section><div class="pad">
     <div class="eyebrow">O que custaria reconstruir</div>
     <h2>Somar módulos é linear. <span class="grad">Linkar tudo explode o custo.</span></h2>
-    <p class="muted" style="margin:8px 0 4px">Estimativa bottom-up com base na escala real medida (72 mil linhas, 553 endpoints, 130+ tabelas) e em dados de mercado de desenvolvimento sob medida:</p>
+    <p class="muted" style="margin:8px 0 4px">Estimativa bottom-up com base na escala real medida (74 mil linhas, 554 endpoints, 170+ tabelas) e em dados de mercado de desenvolvimento sob medida:</p>
     <div class="costbox">
       <div class="r"><span>Construir os 12 módulos (soma, com infra compartilhada)</span><span class="v">US$ 1,0 – 1,5 M</span></div>
       <div class="r"><span>+ Linkar tudo nativamente (15–20 fluxos complexos × US$ 20–80k)</span><span class="v">+ US$ 0,3 – 0,75 M</span></div>
