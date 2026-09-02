@@ -181,7 +181,7 @@
       <div class="found"><h3><span class="ic" style="background:#059669"><svg><use href="#calc"/></svg></span>Mercado obrigatório e crescente</h3><p>Compliance regulado não é opcional — é lei. O mercado de software de qualidade (QMS/GxP) cresce a dois dígitos ao ano, com consolidação ativa (M&amp;A do setor aquecido).</p></div>
       <div class="found"><h3><span class="ic" style="background:#2563eb"><svg><use href="#ruler"/></svg></span>O comprador economiza 2–3 anos</h3><p>Build-vs-buy: em vez de reunir um time raro por 2–3 anos, o comprador embarca o produto pronto e conforme, sob a marca dele, em semanas.</p></div>
       <div class="found"><h3><span class="ic" style="background:#0d9488"><svg><use href="#link"/></svg></span>Dois motores de receita recorrente</h3><p><strong>(1)</strong> Assinatura direta à indústria (já precificada). <strong>(2)</strong> White-label via a camada de Plataforma — cada parceiro vira um canal, sem CAC unitário. + portal de Consultores.</p></div>
-      <div class="found"><h3><span class="ic" style="background:#4f46e5"><svg><use href="#lock"/></svg></span>Risco técnico já pago</h3><p>O maior risco de software — <em>"será que constroem?"</em> — já ficou para trás. Está construído, funcionando e conforme. O capital vira <strong>crescimento</strong>, não pesquisa.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#4f46e5"><svg><use href="#lock"/></svg></span>Risco técnico já pago</h3><p>O risco técnico — <em>"será que constroem?"</em> — já ficou para trás: construído, funcionando e conforme. O risco que resta é o de <strong>mercado</strong> (validação com clientes) — e é exatamente onde o capital e o canal do comprador aceleram.</p></div>
     </div>
   </div></section>
 
@@ -424,7 +424,7 @@
       <div class="r"><span>+ Profundidade premium (motor analítico, WMS/nesting, recall, SGQ farma, microbiologia)</span><span class="v">prêmio</span></div>
       <div class="r tot"><b>Custo real de reconstrução</b><span class="v">US$ 1,5 – 2,25 M+ &nbsp;(R$ 7,5 – 11 M)</span></div>
     </div>
-    <div class="callout" style="margin-top:16px"><strong>E o mais difícil não é o dinheiro:</strong> é reunir e coordenar um time que domine <strong>norma + engenharia + química</strong> ao mesmo tempo — perfil raríssimo — por 18 a 36 meses, com risco de não terminar. Aqui, já está pronto e em produção.</div>
+    <div class="callout" style="margin-top:16px"><strong>E o mais difícil não é o dinheiro:</strong> é reunir e coordenar um time que domine <strong>norma + engenharia + química</strong> ao mesmo tempo — perfil raríssimo — por 18 a 36 meses, com risco de não terminar. Aqui, já está pronto e demonstrável ponta a ponta.</div>
   </div></section>
 
   <!-- COMPARÁVEL -->
@@ -443,6 +443,37 @@
       </tbody>
     </table></div>
     <div class="callout big" style="margin-top:16px">O Mindexon entrega <strong>tudo isso num sistema só, linkado</strong>, com integridade criptográfica — e você compra o ativo <strong>uma vez</strong>, em vez de alugar cinco fornecedores para sempre.</div>
+  </div></section>
+
+  <!-- ESTADO HONESTO / DILIGÊNCIA -->
+  <section><div class="pad">
+    <div class="eyebrow">Estado honesto do ativo</div>
+    <h2>O que está pronto. <span class="grad">E o que ainda não está.</span></h2>
+    <p class="muted" style="margin:8px 0 4px">Comprador estratégico não desconta lacuna declarada — desconta lacuna descoberta. Por isso tudo está aqui, antes da diligência:</p>
+    <div class="scroll"><table class="tbl">
+      <thead><tr><th>Item</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>11 módulos integrados no mesmo modelo de dados</td><td><strong style="color:var(--emerald)">Pronto</strong></td></tr>
+        <tr><td>Trilha SHA-256 encadeada + assinatura Ed25519 em todos os módulos</td><td><strong style="color:var(--emerald)">Pronto</strong></td></tr>
+        <tr><td>Multi-tenant isolado, RBAC por departamento, TOTP cifrado (AES-256-GCM)</td><td><strong style="color:var(--emerald)">Pronto</strong></td></tr>
+        <tr><td>Auth endurecida: bcrypt, tempo constante, rate limit em 2 camadas</td><td><strong style="color:var(--emerald)">Pronto</strong></td></tr>
+        <tr><td>Bilíngue PT/EN nativo · camadas de BI e Plataforma multi-empresa</td><td><strong style="color:var(--emerald)">Pronto</strong></td></tr>
+        <tr><td>Pacote de validação CSV (IQ/OQ/PQ) para o comprador executar</td><td><strong style="color:var(--amber)">Não iniciado</strong></td></tr>
+        <tr><td>Testes automatizados</td><td><strong style="color:var(--amber)">Nenhum ainda (plano definido)</strong></td></tr>
+        <tr><td>Teste de intrusão por terceiro independente</td><td><strong style="color:var(--amber)">Não realizado</strong></td></tr>
+        <tr><td>Clientes pagantes em produção</td><td><strong style="color:var(--amber)">Zero</strong></td></tr>
+        <tr><td>Histórico de uptime e volume transacionado</td><td><strong style="color:var(--amber)">n/a (não está em produção)</strong></td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout" style="margin-top:16px"><strong>Tudo que não está pronto está nesta tabela.</strong> A diligência não vai encontrar nada que não esteja declarado aqui — e é isso que remove o desconto de risco que um comprador aplicaria por precaução.</div>
+
+    <h3 style="margin-top:22px">Prontidão para o time técnico do comprador</h3>
+    <div class="founds" style="margin-top:10px">
+      <div class="found"><h3><span class="ic" style="background:#059669"><svg><use href="#server"/></svg></span>Stack &amp; qualidade de código</h3><p>Next 15 · React 18 · <strong>TypeScript strict</strong> · PostgreSQL (sem ORM) · decimal.js · jose · bcryptjs. ESLint + Prettier + type-check no projeto.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#2563eb"><svg><use href="#c"/></svg></span>Licenças</h3><p>Dependências permissivas (MIT/ISC/Apache/BSD). <strong>Sem AGPL</strong>; os poucos pacotes de dupla licença (ex.: DOMPurify → Apache, JSZip/PizZip → MIT) são usados na opção permissiva — nenhum copyleft alcança o código distribuído. Auditável em 1 comando (<span style="font-family:var(--mono);font-size:.82em">license-checker</span>).</p></div>
+      <div class="found"><h3><span class="ic" style="background:#0d9488"><svg><use href="#finger"/></svg></span>Titularidade do IP</h3><p>Desenvolvido integralmente pelo criador, <strong>assistido por IA</strong> — declarado. Sem terceiros sem cessão.</p></div>
+      <div class="found"><h3><span class="ic" style="background:#4f46e5"><svg><use href="#lock"/></svg></span>Acesso ao código</h3><p>Repositório disponibilizado em <strong>sala limpa, sob NDA</strong>, antes de qualquer compromisso financeiro.</p></div>
+    </div>
   </div></section>
 
   <!-- CONCLUSÃO -->
